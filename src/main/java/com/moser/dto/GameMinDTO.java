@@ -1,10 +1,13 @@
 package com.moser.dto;
 
 import com.moser.entities.Game;
+import com.moser.projections.GameMinProjection;
+import lombok.Getter;
 
 /**
  * @author Juliano Moser
  */
+@Getter
 public class GameMinDTO {
 
     private Long id;
@@ -24,23 +27,11 @@ public class GameMinDTO {
         shortDescription = entity.getShortDescription();
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public Integer getYear() {
-        return year;
-    }
-
-    public String getImgUrl() {
-        return imgUrl;
-    }
-
-    public String getShortDescription() {
-        return shortDescription;
+    public GameMinDTO(GameMinProjection projection) {
+        id = projection.getId();
+        title = projection.getTitle();
+        year = projection.getYear();
+        imgUrl = projection.getImgUrl();
+        shortDescription = projection.getShortDescription();
     }
 }

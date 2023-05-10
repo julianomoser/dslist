@@ -23,7 +23,7 @@ public class GameController {
         this.gameService = gameService;
     }
 
-    @GetMapping(value = "/{gameId}")
+    @GetMapping(path = "/{gameId}")
     public GameDTO findById(@PathVariable Long gameId) {
         return gameService.findById(gameId);
     }

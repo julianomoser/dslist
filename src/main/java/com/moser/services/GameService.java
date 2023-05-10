@@ -4,6 +4,7 @@ import com.moser.dto.GameDTO;
 import com.moser.dto.GameMinDTO;
 import com.moser.entities.Game;
 import com.moser.exception.GameNaoEncontradoException;
+import com.moser.projections.GameMinProjection;
 import com.moser.repositories.GameRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,6 +33,12 @@ public class GameService {
     public List<GameMinDTO> findAll() {
         var result = gameRepository.findAll();
         return result.stream().map(GameMinDTO::new).toList();
+    }
+
+    @Transactional(readOnly = true)
+    public List<GameMinDTO> findByGameList(Long listId) {
+        List<GameMinProjection> games = gameRepository.searchByList(listId);
+        return games.stream().map(GameMinDTO::new).toList();
     }
 
     public Game findOrFail(Long gameId) {

@@ -40,8 +40,6 @@ public class Game implements Serializable {
     @Column(columnDefinition = "TEXT")
     private String longDescription;
 
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
