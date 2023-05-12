@@ -1,9 +1,12 @@
 package com.moser.services;
 
 import com.moser.dto.GameListDTO;
+import com.moser.entities.GameList;
 import com.moser.projections.GameMinProjection;
 import com.moser.repositories.GameListRepository;
 import com.moser.repositories.GameRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,9 +28,8 @@ public class GameListService {
     }
 
     @Transactional(readOnly = true)
-    public List<GameListDTO> findAll() {
-        var result = gameListRepository.findAll();
-        return result.stream().map(GameListDTO::new).toList();
+    public Page<GameList> findAll(Pageable pageable) {
+        return gameListRepository.findAll(pageable);
     }
 
     @Transactional

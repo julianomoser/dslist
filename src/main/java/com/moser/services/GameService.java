@@ -6,6 +6,8 @@ import com.moser.entities.Game;
 import com.moser.exception.GameNaoEncontradoException;
 import com.moser.projections.GameMinProjection;
 import com.moser.repositories.GameRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,9 +32,8 @@ public class GameService {
     }
 
     @Transactional(readOnly = true)
-    public List<GameMinDTO> findAll() {
-        var result = gameRepository.findAll();
-        return result.stream().map(GameMinDTO::new).toList();
+    public Page<Game> findAll(Pageable pageable) {
+        return gameRepository.findAll(pageable);
     }
 
     @Transactional(readOnly = true)

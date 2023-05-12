@@ -3,11 +3,13 @@ package com.moser.dto;
 import com.moser.entities.Game;
 import com.moser.projections.GameMinProjection;
 import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @author Juliano Moser
  */
 @Getter
+@Setter
 public class GameMinDTO {
 
     private Long id;
