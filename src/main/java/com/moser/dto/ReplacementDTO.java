@@ -1,5 +1,6 @@
 package com.moser.dto;
 
+import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,8 +11,10 @@ import lombok.Setter;
 @Setter
 public class ReplacementDTO {
 
-
+    @NotNull
+    @Positive
     private Integer sourceIndex;
-
+    @NotNull
+    @PositiveOrZero
     private Integer targetIndex;
 }

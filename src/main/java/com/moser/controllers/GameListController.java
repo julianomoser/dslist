@@ -5,6 +5,7 @@ import com.moser.dto.GameMinDTO;
 import com.moser.dto.ReplacementDTO;
 import com.moser.services.GameListService;
 import com.moser.services.GameService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,7 +37,7 @@ public class GameListController {
 
     @PostMapping(path = "/{listId}/replacement")
     public void move(@PathVariable Long listId,
-                     @RequestBody ReplacementDTO replacementDTO) {
+                     @RequestBody @Valid ReplacementDTO replacementDTO) {
         gameListService.movie(listId, replacementDTO.getSourceIndex(), replacementDTO.getTargetIndex());
     }
 }
